@@ -9,21 +9,24 @@ import { socket } from '../../socket/socket';
 
 export const ModalContainer = ({Body}) => {
 
-  const Pacifier = () => {
-    return <></>
-  }
-
   const {visible, title} = useSelector(state => state.modal)
   const userName = useSelector(state => state.userName)
 
   const dispatch = useDispatch()
+
+  const canselModal = () => {
+    if(!userName){
+      socket.emit('no name')
+    }
+    dispatch(closeModalAction())
+  }
 
   return (
     <>
       <Modal
         title={title}
         visible={visible}
-        onCancel={() => dispatch(closeModalAction())}
+        onCancel={canselModal}
         onOk={() => dispatch(sendNameAction(userName))}
       >
         <Body />

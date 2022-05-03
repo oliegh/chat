@@ -1,3 +1,4 @@
+const { default: axios } = require('axios');
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -36,6 +37,7 @@ const usersData = {
       }
     })
   },
+
   getUser: function (id) {
     let userData = {}
     this.users.some(user => {
@@ -67,6 +69,15 @@ io.on('connection', (socket) => {
         text: msg
       }
     )
+  })
+
+  socket.on('no name', () => {
+    axios.post('https://plarium.com/services/api/nicknames/new/create?group=2&gender=2')
+      .then(res => {
+        usersData.addUserName(socket.id, res.data[0])
+        socket.emit('set name', res.data[0])
+        socket.emit('new user', res.data[0])
+      })
   })
 
   socket.on('name user', (data) => {

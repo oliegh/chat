@@ -49,6 +49,10 @@ export const closeAlert = () => {
 }
 
 export const alertAction = (typeAlert, message) => {
+  store.dispatch(showAlert())
+  setTimeout(() => {
+    store.dispatch(closeAlert())
+  }, 3000)
   return {
     type: SEND_ALERT,
     typeAlert,
@@ -58,7 +62,7 @@ export const alertAction = (typeAlert, message) => {
 
 export const sendNameAction = (data) => {
 
-  socket.emit('name user', data, err => store.dispatch(alertAction('error', err)))
+  socket.emit('name user', data)
 
   store.dispatch(closeModalAction())
 }

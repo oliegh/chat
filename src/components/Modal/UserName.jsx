@@ -11,21 +11,16 @@ export const UserName = () => {
   const nameUser = useSelector(state => state.userName)
   const dispatch = useDispatch()
 
- 
-  const nameChange = e => {
-    e.preventDefault()
-    // setNameUser(e.target.value)
-  }
-
   const sendName = e => {
     e.preventDefault()
     socket.emit('name user', nameUser)
   }
 
   return (
-    <Row>
+    <Row className="mt-2">
       <Col span={24}>
-        <Input placeholder='Введите ваше имя' value={nameUser} onChange={ e => dispatch(nameChangeAction(e.target.value))}  /> <Button  onClick={sendName} >Соранить</Button>
+        <Input placeholder='Введите ваше имя' value={nameUser} onChange={ e => dispatch(nameChangeAction(e.target.value))}  /> 
+        <Button className="mt-1" onClick={sendName} >Соранить</Button>
       </Col>
     </Row>
   )
