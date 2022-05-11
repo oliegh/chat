@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { OtherMessages } from './components/OtherMessages';
 import { MyMessages } from './components/MyMessages';
 import { useSelector } from 'react-redux';
-
 import { UserName } from './components/Modal/UserName';
-import { ModalContainer } from './components/Modal/Modal';
+import { ModalContainer } from './components/Modal/ModalContainer';
 import { Alert } from 'antd';
+import { socket } from './socket/socket';
 
 
-function App({ socket }) {
+function App() {
 
   const [msgValue, setMsgValue] = useState('')
   const messageLog = useSelector(state => state.messageLog)
@@ -35,10 +35,10 @@ function App({ socket }) {
 
       {
         visibleAlert
-        ?
-        <Alert message={message} type={typeAlert} className='alert-position' />         
-        :
-        <></>
+          ?
+          <Alert message={message} type={typeAlert} className='alert-position' />
+          :
+          <></>
       }
 
       <ModalContainer Body={UserName} />
@@ -55,19 +55,15 @@ function App({ socket }) {
 
                   {
                     messageLog.map((item) => {
-                      if (item.userData.id === sessionId.id) {
+                      if (item.systemMessage)
+                        return <p>{item.systemMessage}</p>
+                      if (item.userData.id && item.userData.id === sessionId.id) {
                         return <MyMessages messages={[item]} />
-                      } else if(item.userData.id !== sessionId.id) {
+                      } else if (item.userData.id !== sessionId.id) {
                         return <OtherMessages messages={[item]} />
                       }
                     })
                   }
-
-                  {/* <OtherMessages messages={messageLog} /> */}
-                  {/* <div className="media media-meta-day">Today</div> */}
-                  {/* <MyMessages messages={[]} /> */}
-
-
 
                 </div>
                 <div className="publisher bt-1 border-light">
@@ -87,7 +83,7 @@ function App({ socket }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default App;

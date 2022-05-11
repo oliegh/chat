@@ -1,15 +1,21 @@
 {
   "name": "chat",
   "version": "0.1.0",
-  "private": true,
+  "keywords": [
+    "react",
+    "socket io"
+  ],
+  "author": "Oleg Alzhikov <alzhikov@gmail.com>",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.20.1",
     "axios": "^0.27.2",
+    "concurrently": "^7.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "nodemon": "^2.0.16",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.1",
@@ -22,9 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "server": "nodemon server"
   },
   "eslintConfig": {
     "extends": [

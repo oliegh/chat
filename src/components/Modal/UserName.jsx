@@ -6,8 +6,6 @@ import { socket } from "../../socket/socket"
 
 export const UserName = () => {
 
-  // const [nameUser, setNameUser] = useState('')
-
   const nameUser = useSelector(state => state.userName)
   const dispatch = useDispatch()
 
@@ -20,7 +18,7 @@ export const UserName = () => {
     <Row className="mt-2">
       <Col span={24}>
         <Input placeholder='Введите ваше имя' value={nameUser} onChange={ e => dispatch(nameChangeAction(e.target.value))}  /> 
-        <Button className="mt-1" onClick={sendName} >Соранить</Button>
+        <Button className="mt-1" onClick={sendName} >Сохранить</Button>
       </Col>
     </Row>
   )

@@ -10,7 +10,6 @@ export const MyMessages = ({ messages }) => {
             <p key={key}>{message.text}</p>
           )
         }
-        {/* <p className="meta"><time dateTime="2018">00:06</time></p> */}
       </div>
     </div>
   )

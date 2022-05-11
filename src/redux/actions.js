@@ -1,8 +1,7 @@
-import { useDispatch } from "react-redux"
 import { socket } from "../socket/socket"
 import { store } from "./store"
 
-const { SESSION_ID, ADD_MESSAGE, SHOW_MODAL, CLOSE_MODAL, NAME_CHANGE, SEND_ALERT, CLOSE_ALERT, SHOW_ALERT } = require("../type")
+const { SESSION_ID, ADD_MESSAGE, SHOW_MODAL, CLOSE_MODAL, NAME_CHANGE, SEND_ALERT, CLOSE_ALERT, SHOW_ALERT, USER_DISCONNECT, USER_CONNECT } = require("../type")
 
 export const setIdAction = (data) => {
   return {
@@ -67,5 +66,17 @@ export const sendNameAction = (data) => {
   store.dispatch(closeModalAction())
 }
 
+export const newUserConnectAction = (data) => {
+  return {
+    type: USER_CONNECT,
+    data
+  }
+}
 
+export const userDisconnectAction = (data) => {
+  return {
+    type: USER_DISCONNECT,
+    data
+  }
+}
 

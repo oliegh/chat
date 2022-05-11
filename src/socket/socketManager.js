@@ -1,5 +1,5 @@
 import { socket } from './socket';
-import { addMessageAction, alertAction, nameChangeAction, setIdAction } from '../redux/actions'
+import { addMessageAction, alertAction, nameChangeAction, newUserConnectAction, setIdAction, userDisconnectAction } from '../redux/actions'
 import { store } from '../redux/store';
 
 
@@ -17,6 +17,14 @@ socket.on('set name', function (data) {
 
 socket.on('new user', function (data) {
   store.dispatch(nameChangeAction(data))
+})
+
+socket.on('connect new user', function (data) {
+  store.dispatch(newUserConnectAction(data))
+})
+
+socket.on('user disconnect', function (data) {
+  store.dispatch(userDisconnectAction(data))
 })
 
 socket.on('connect', () => store.dispatch(alertAction('success', 'Соединение установлено!')))

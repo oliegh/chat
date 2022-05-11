@@ -1,8 +1,8 @@
-import { Button, Modal } from 'antd';
+import { Modal } from 'antd';
 import React from 'react'
 
 import { useDispatch, useSelector } from "react-redux"
-import { closeModalAction, sendNameAction, showModalAction } from '../../redux/actions';
+import { closeModalAction, sendNameAction } from '../../redux/actions';
 import { socket } from '../../socket/socket';
 
 
@@ -33,14 +33,5 @@ export const ModalContainer = ({Body}) => {
 
       </Modal>
     </>
-  );
-};
-
-
-
-  // return (
-  //   <div className={'modal ' + status ? 'show' : ''}>
-      
-  //   </div>
-  // )
-// }
+  )
+}
